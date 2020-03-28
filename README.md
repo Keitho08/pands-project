@@ -24,7 +24,7 @@ The key attribute information in the paper are as follows:
      *Iris Setosa* | `Iris Versicolor` | **Iris Viriginica**
     --- | --- | ---
     ![Setosa](Iris_setosa.jpg) | ![Setosa](Iris_versicolor.jpg) | ![Setosa](Iris_virginica.jpg)
-    Iris Flower Species (source: https://en.wikipedia.org/wiki/Iris_flower_data_set) 
+Iris Flower Species (source: https://en.wikipedia.org/wiki/Iris_flower_data_set) 
     
 
 The Iris Data Set is widely referenced in computer science. The Iris flower data set is widely used as an input testing method for new types of sorting models and taxonomy algorithims to determine how various technologies can handle data sets. For example Wu et al (2017) refered to the data set in their paper "Enhanced Classification Models for Iris Dataset," which focused on creating an induction algorithim for randomized decision trees. The dataset is widely used for beginners to understand machine learning, and it this is also an intention for this project to delve into the world of machine learning. A demonstration of the popularity of the dataset in machine learning is the fact that the widely used machine learning package Scikit-learn has the package already built into it which can be accessed by the following python code:
