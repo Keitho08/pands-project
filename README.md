@@ -34,6 +34,14 @@ from sklearn.datasets import load_iris
 ```
 # Analysing the Iris Flower Data Set
 
+The first step in analysing the data is to import the relevant libraries required to visualise the data in Python. Several hours research was carried out to determine the appropriate libraries to use for this project.
+
+Via the command line sklearn was installed using the following command: 
+* pip install sklearn
+
+![sepalpetalimage](sepalpetalimage.png)
+
+Source: https://www.ritchieng.com/machine-learning-iris-dataset/
 
 
 
@@ -53,3 +61,11 @@ ISSN 1877-0509,
 https://doi.org/10.1016/j.procs.2019.12.072.
 (http://www.sciencedirect.com/science/article/pii/S1877050919320836)
 6. https://scikit-learn.org/stable/user_guide.html
+7. http://www.lac.inpe.br/~rafael.santos/Docs/CAP394/WholeStory-Iris.html
+8. https://www.kaggle.com/sanniaf/basic-data-mining-methods-on-iris
+9. https://www.ritchieng.com/machine-learning-iris-dataset/
+10. https://www.ibm.com/cloud/blog/predictive-machine-learning-model-build-retrain
+11. https://machinelearningmastery.com/machine-learning-in-python-step-by-step/
+12. https://python-graph-gallery.com/30-basic-boxplot-with-seaborn/
+13. https://seaborn.pydata.org/tutorial/aesthetics.html
+
