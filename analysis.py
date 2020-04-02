@@ -203,7 +203,17 @@ parallel_coordinates(iris, "variety")
 plt.ioff()
 plt.savefig("21_IrisParrallelCoordinates")
 
-# 12 Dashboard
+# 13 Dashboard
+
+dashboard, axes =plt.subplots(2,2, figsize=(15,15))
+sns.set_style('darkgrid')
+d1=sns.boxplot(x="variety", y="sepal.length", data=iris, ax=axes[0,0])
+d2=sns.stripplot(x="variety", y="sepal.width", data=iris, palette="winter",size=5,jitter=True,edgecolor='gray',orient='v', ax=axes[0,1])
+d3=sns.violinplot(x='variety',y='petal.length',data=iris, ax=axes[1,0])
+d4=sns.distplot(iris["petal.width"],color='gold', label="Petal Width", ax=axes[1,1])
+plt.savefig("22_IrisDashboard")
+
+# 14 Individual Histograms
 
 
 
