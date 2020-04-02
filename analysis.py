@@ -7,18 +7,18 @@
 
 import numpy as np
 import pandas as pd
-import scipy
-import sklearn 
+#import scipy
+#import sklearn 
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-from sklearn import metrics
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import train_test_split
+#from sklearn import metrics
+#from sklearn.neighbors import KNeighborsClassifier
+#from sklearn.linear_model import LogisticRegression
+#from sklearn.model_selection import train_test_split
 from pandas.plotting import parallel_coordinates
-from matplotlib.backends.backend_pdf import PdfPages 
-pp = PdfPages('Irisplots.pdf')
+#from matplotlib.backends.backend_pdf import PdfPages 
+#pp = PdfPages('Irisplots.pdf')
 
 
 #Import the dataset. Using panda's we tell python to read the associated CSV text file.
@@ -47,29 +47,33 @@ txt.close()
 
 # 1 Visual Description of the Data 
 
-iris.describe().plot(kind = "area",fontsize=27, figsize = (20,8), table = True,colormap="rainbow")
-plt.xlabel('Statistics', color="g")
-plt.ylabel('Value', color="g")
-plt.title("General Statistics of Iris Dataset")
+iris.describe().loc[['mean', 'std', 'min', '25%', '50%', '75%', 'max']].plot(kind = "area",fontsize=20, figsize = (20,8), table = True,colormap="rainbow")
+plt.ylabel('Value', color="g", size=20)
+plt.title("General Statistics of Iris Dataset", size=20)
 plt.savefig("1_Iris_Data_Summary")
 
 # 2 Boxplots
-figboxplot, (ax1, ax2, ax3, ax4) = plt.subplots(1,4,figsize=(8,6)) 
+figboxplot, (ax1, ax2, ax3, ax4) = plt.subplots(1,4, figsize=(12,10)) 
 sns.boxplot(x="variety", y="sepal.length", data=iris, ax=ax1)
 sns.swarmplot(x="variety", y="sepal.length", data=iris, color="0.25", ax=ax1)
 ax1.set_ylabel("Sepal Lenght (cm)", color="g")
+ax1.set_xlabel("Length/Width (cm)", color='r')
 
 sns.boxplot(x="variety", y="sepal.width", data=iris, ax=ax2)
 sns.swarmplot(x="variety", y="sepal.width", data=iris, color="0.25", ax=ax2)
-ax2.set_ylabel("Sepal Width (cm)", color="g")  
+ax2.set_ylabel("")  
+ax2.set_xlabel("Sepal Width", color='r')
 
 sns.boxplot(x="variety", y="petal.length", data=iris, ax=ax3)
 sns.swarmplot(x="variety", y="petal.length", data=iris, color="0.25", ax=ax3)
-ax3.set_ylabel("Petal Lenght (cm)", color="g")  
+ax3.set_ylabel("")  
+ax3.set_xlabel("Petal Length", color='r')
 
 sns.boxplot(x="variety", y="petal.width", data=iris, ax=ax4)
 sns.swarmplot(x="variety", y="petal.width", data=iris, color="0.25", ax=ax4)
-ax4.set_ylabel("Petal Width (cm)", color="g")  
+ax4.set_ylabel("")  
+ax4.set_xlabel("Petal Width", color='r')
+
 plt.savefig("2_IrisBoxPlotsA")
 
 figboxplota=iris.boxplot(by="variety", figsize=(10, 8)) #alternative way to view boxplots
@@ -152,6 +156,7 @@ plt.savefig("14_PairPlots")
 # 7 Heat Map
 figirisheatmap, (ax13) = plt.subplots(figsize=(10,7)) 
 ax13 =sns.heatmap(iris.corr(), annot=True, cmap='summer', vmin=-1, vmax=1, linewidths=1,linecolor='k',square=True)
+ax13.set_ylim(0, 4)
 plt.savefig("15_IrisHeatMap")
 
 # 8 Distribution Plot
@@ -215,6 +220,60 @@ plt.savefig("22_IrisDashboard")
 
 # 14 Individual Histograms
 
+sepallengthhist, axes = plt.subplots(figsize=(10,8))
+iris['sepal.length'].plot(kind='hist',color='blue')
+plt.xlabel("Sepal Length")
+plt.grid(True)
+plt.savefig("23_sepallengthhist")
+
+sepalwidthhist, axes = plt.subplots(figsize=(10,8))
+iris['sepal.width'].plot(kind='hist',color='green')
+plt.xlabel("Sepal Width")
+plt.grid(True)
+plt.savefig("24_sepalwidthhist")
+
+petallengthhist, axes = plt.subplots(figsize=(10,8))
+iris['petal.length'].plot(kind='hist',color='red')
+plt.xlabel("Petal Length")
+plt.grid(True)
+plt.savefig("25_petallengthhist")
+
+petalwidthhist, axes = plt.subplots(figsize=(10,8))
+iris['petal.width'].plot(kind='hist',color='gold')
+plt.xlabel("Petal Width")
+plt.grid(True)
+plt.savefig("26_petalwidthhist")
+
+# References
+# https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.describe.html
+# https://stackoverflow.com/questions/52796015/using-corr-method-for-sklearn-bunch-object-iris
+# https://seaborn.pydata.org/generated/seaborn.color_palette.html#seaborn.color_palette
+# https://seaborn.pydata.org/generated/seaborn.stripplot.html
+# https://s3.amazonaws.com/assets.datacamp.com/blog_assets/Python_Seaborn_Cheat_Sheet.pdf
+# https://elitedatascience.com/python-seaborn-tutorial
+# https://seaborn.pydata.org/tutorial/aesthetics.html
+# https://statisticsbyjim.com/basics/probability-distributions/
+# https://seaborn.pydata.org/tutorial/distributions.html
+# https://medium.com/@neuralnets/data-visualization-with-python-and-seaborn-part-1-29c9478a8700
+# http://www.lac.inpe.br/~rafael.santos/Docs/CAP394/WholeStory-Iris.html NBB
+# https://www.kaggle.com/biphili/seaborn-matplotlib-plot-to-visualize-iris-data NBB
+# https://www.datacamp.com/community/tutorials/seaborn-python-tutorial
+# https://www.kaggle.com/jchen2186/machine-learning-with-iris-dataset
+# https://www.ibm.com/cloud/blog/predictive-machine-learning-model-build-retrain
+# https://machinelearningmastery.com/machine-learning-in-python-step-by-step/
+# https://www.kaggle.com/sanniaf/basic-data-mining-methods-on-iris
+# https://www.kaggle.com/sanniaf/basic-data-mining-methods-on-iris
 
 
-# https://stackoverflow.com/questions/48204780/how-to-plot-multiple-figures-in-a-row-using-seaborn
+
+
+
+
+
+
+
+
+
+
+
+
