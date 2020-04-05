@@ -5,21 +5,11 @@
 #The following Libraries have been imported and used in the dataset. Please refer
 #to readme for details on these libraries and why they are used.
 
-import numpy as np
-import pandas as pd
-#import scipy
-#import sklearn 
-import seaborn as sns
-import matplotlib.pyplot as plt
-
-#from sklearn import metrics
-#from sklearn.neighbors import KNeighborsClassifier
-#from sklearn.linear_model import LogisticRegression
-#from sklearn.model_selection import train_test_split
-from pandas.plotting import parallel_coordinates
-#from matplotlib.backends.backend_pdf import PdfPages 
-#pp = PdfPages('Irisplots.pdf')
-
+import numpy as np #Used for arranging data and carrying out mathematical calculations
+import pandas as pd #For reading and efficient management of the data
+import seaborn as sns #Used for plotting in Seaborn module
+import matplotlib.pyplot as plt #Used for plotting in Matplotlib.pyplot module
+from pandas.plotting import parallel_coordinates #Used to specifically plot a parrallel co-ordinates plot
 
 #Import the dataset. Using panda's we tell python to read the associated CSV text file.
 iris = pd.read_csv('Iris_data.txt')
@@ -156,7 +146,7 @@ plt.savefig("14_PairPlots")
 # 7 Heat Map
 figirisheatmap, (ax13) = plt.subplots(figsize=(10,7)) 
 ax13 =sns.heatmap(iris.corr(), annot=True, cmap='summer', vmin=-1, vmax=1, linewidths=1,linecolor='k',square=True)
-ax13.set_ylim(0, 4)
+ax13.set_ylim(0, 4) # explain the issue with the heatmap in matplotlib for credit
 plt.savefig("15_IrisHeatMap")
 
 # 8 Distribution Plot
@@ -260,7 +250,7 @@ plt.savefig("26_petalwidthhist")
 # https://www.datacamp.com/community/tutorials/seaborn-python-tutorial
 # https://www.kaggle.com/jchen2186/machine-learning-with-iris-dataset
 # https://www.ibm.com/cloud/blog/predictive-machine-learning-model-build-retrain
-# https://machinelearningmastery.com/machine-learning-in-python-step-by-step/
+# https://machinelearningmastery.com/machine-learning-in-python-step-by-step/ NBB
 # https://www.kaggle.com/sanniaf/basic-data-mining-methods-on-iris
 # https://www.kaggle.com/sanniaf/basic-data-mining-methods-on-iris
 
