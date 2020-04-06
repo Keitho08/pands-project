@@ -303,14 +303,210 @@ Another very useful plot is the HeatMap:
 
 ![15_IrisHeatMap](15_IrisHeatMap.png)
 
+The heat map shows the correlation between the variables on each axis. The correlation is also included in the outputted text format file, however the heatmap is an excellent visual aid to interpret the correlation between the Iris attributes. The correlation ranges from -1 to +1, if the value is close to zero there is little or no linear trend between the variables. A correlation close to +1 means there is a strong positive linear relationship, while a figure close to -1 means there is a strong relationship that one variable will decrease while the other increases. Heat maps can be useful for selecting parameters for machine learning which will be discussed further in the README. From the heatmap we can see there is a very strong positive linear relationship between petal width and petal length in comparison, sepal lenght vs sepal width has a very low linear relationship. The code used to create the heatmap is as follows:
 
+```python
+figirisheatmap, (ax13) = plt.subplots(figsize=(10,7)) 
+ax13 =sns.heatmap(iris.corr(), annot=True, cmap='summer', vmin=-1, vmax=1, linewidths=1,linecolor='k',square=True)
+ax13.set_ylim(0, 4) 
+plt.savefig("15_IrisHeatMap")
+```
+Heatmaps are a standard module in seaborn. The data used is the iris correlation data. Setting the annot to "True" allows the values to be displayed within the boxes of the heatmap. The color map used is summer, the range is set from -1 to +1, the linewidths and line colors of the grid are defined and we want all data shown evenly by setting square to "True". ***Note: there is a bug with using the seaborn heatmap in the latest version of matplotlib, whereby the top and bottom of the plot is cropped. To manually fix this issue the y limit of the axes was set (0,4) to display all the data correctly.***
 
+Following on from the heat map the LM (linear model) allows us to plot two variables against each other and show the relationship via a regression line:
 
-Machine Learning
-Via the command line sklearn was installed using the following command: 
-* pip install sklearn
+![17_IrisLMPlotPetal](17_IrisLMPlotPetal.png)
+![18_IrisLMPlotSepal](18_IrisLMPlotSepal.png)
 
+The linear model plot shows a scatter plot of the variables and a regression line shows the relationship. As verified in the heatmap the strong relationship in the petal length and width is shown in comparison to the low relationship of the sepal width and length. The code used for the linear model plot is:
 
+```python
+sns.lmplot(x="petal.length", y="petal.width", data=iris)
+plt.savefig("17_IrisLMPlotPetal")
+sns.lmplot(x="sepal.length", y="sepal.width", data=iris)
+plt.savefig("18_IrisLMPlotSepal")
+```
+Following early descriptions of code, the above is self explanotory. The lmplot is another in build module to seaborn. 
+
+The distribution plot allows us to predict the probability of obtaining certain values for each of the four variables in the Iris dataset:
+
+![16_IrisDistPlot](16_IrisDistPlot.png)
+
+In the above plot a smoothed line is included to represent each individual data point. The code used to generate the distribution plot is:
+
+```python
+irisdist, axes = plt.subplots(2,2, figsize=(10,8), sharex=False)
+sns.distplot(iris["sepal.length"], color='green', label="Sepal Length", ax=axes[0,0])
+sns.distplot(iris["sepal.width"],color='red', label="Sepal Width", ax=axes[0,1])
+sns.distplot(iris["petal.length"],color='blue', label="Petal Length", ax=axes[1,0])
+sns.distplot(iris["petal.width"],color='gold', label="Petal Width", ax=axes[1,1])
+plt.savefig("16_IrisDistPlot")
+```
+The four sublplots are combined and each of the sub plots are given their own x axis. We tell the plot to use the variable from the iris dataset for each of the subplots and define the color, label and axes (location of the plot).
+
+Other useful plots for analysing the Iris dataset include the Cumulative Histogram plots and Parrallel coordinates plot:
+* Cumulative Histograms:
+![19_CumulativeSepalLengthHistogram](19_CumulativeSepalLengthHistogram.png)
+![20_CumulativePetalLengthHistogram](20_CumulativePetalLengthHistogram.png)
+* Parrallel Coordinates:
+![21_IrisParrallelCoordinates](21_IrisParrallelCoordinates.png)
+
+The cumulative histograms show us the overlap and cumulative distribution of the speal lenght and petal length. Axis lines are added to the plot to show the median, upper and lower quartiles so we can quickly reference for each of the species. The code for the cumulative histogram is:
+
+```python
+irishistsepallength, axes = plt.subplots(1,1, figsize=(10,8), sharex=True)
+setosa['sepal.length'].plot(kind='hist',bins=200,alpha=0.3,color='blue',cumulative=True,density=True)
+versicolor['sepal.length'].plot(kind='hist',bins=200,alpha=0.3,color='red',cumulative=True,density=True)
+virginica['sepal.length'].plot(kind='hist',bins=200,alpha=0.3,color='green',cumulative=True,density=True)
+plt.title('Sepal Length Distribution')
+plt.legend(['Setosa','Versicolor','Virginica'])
+plt.xlabel('Sepal Length in cm')
+plt.axhline(0.75)
+plt.axhline(0.5)
+plt.axhline(0.25)
+plt.savefig("19_CumulativeSepalLengthHistogram")
+```
+We define the plot axes, size and we want to share the x axis. We previously defined the setosa, versicolor and virginica at the start of the code and we use these functions to get the variable for each species. The kind of plot is a cumulative histogram and we use the bins, alpha (opacity) and density functions to format the display of the plot. 
+
+The code for the parrallel coordinates is:
+```python
+irisparalledlcoord, axes = plt.subplots(1,1, figsize=(10,8))
+parallel_coordinates(iris, "variety")
+plt.savefig("21_IrisParrallelCoordinates")
+```
+Parrallel coordinates is a module imported from Pandas library. It is straightforward to plot using the data set and class. It is a good graphical plot to show the variance for each of the four variables with the biggest differences been the petal length and width. 
+
+# 3. Machine Learning
+
+ Note that we understand the data in Iris following our detailed analysis, we are going to dive into the world of machine learning by creating an algorithim to predict the species of flower based on an user inputted variable. 
+
+ ## 3.1 Loading of the Dataset and libraries
+
+ As mentioned in section 1, the sklearn library has a built in iris database, for the purpose of the machine learning algorithim this iris database will be used. The sklearn also includes the modules we need to run the machine learning algorithims. 
+
+```python
+import pandas as pd 
+import numpy as np  
+from sklearn.datasets import load_iris 
+from sklearn.model_selection import train_test_split 
+from sklearn.neighbors import KNeighborsClassifier 
+from sklearn import metrics 
+import matplotlib.pyplot as plt 
+iris = load_iris() 
+```
+The sklearn was not previously installed so it was installed by running "pip install sklearn" on the command line. The iris data set was loaded from sklearn along with the required modules which will be explained further in the README.
+
+Next we want to get an understanding of the data specifically for machine learning so we print the following to the screen:
+
+```python
+print(iris.feature_names)
+print(iris.target) 
+print(iris.target_names) 
+print(iris.data.shape) 
+print(type(iris.data)) 
+print(type(iris.target))
+```
+The iris feature (column) names are:
+```
+['sepal length (cm)', 'sepal width (cm)', 'petal length (cm)', 'petal width (cm)']
+```
+The Iris target, which are integers representing the species, 0=setosa, 1=versicolor, 2=virginica are:
+```
+[0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2
+ 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+ 2 2]
+```
+The target names are:
+```
+['setosa' 'versicolor' 'virginica']
+```
+The shape of the data is 150 rows x 4 columns:
+```
+(150, 4)
+```
+The type of iris.data and iris.target are numpy arrays:
+```
+<class 'numpy.ndarray'>
+<class 'numpy.ndarray'>
+```
+The above information is important to understand so that the output from the machine learning algorithim can be understood.
+
+Now that we understand the data, we need to create test data and training data. Training and testing on the same data is not ideal or good practice, therefore we split the data into a training set and testing set. The latter is achieved by using the sklearn module "train_test_split. Using a test size as 20% of the data set. We specify a random state number of 4 which tells the module for each run of the data the split will always be the same and to use the same results, changing this value to 0, everytime the program is run it may yield a different result. It is not significant what the a random_state number (4), the important thing is that everytime you use that number (4) you will always get the same output. This is achieved using code below:
+
+```python
+X_train, X_test, y_train, y_test = train_test_split(iris['data'], iris['target'], test_size=0.2, random_state=4)
+knn = KNeighborsClassifier(n_neighbors=5)
+knn.fit(X_train, y_train)
+```
+To verify that we have an 80/20 train/test split we can print the shape of each to the screen. The n_neighbors and the reason why 5 is used is described further below, this is used to create a good accuracy of the algorithim prediction.
+```
+print(X_train.shape)
+print(X_test.shape)
+```
+This outputs the following:
+```
+(120, 4)
+(30, 4)
+```
+So now we have set the data split, we now need to define the algorithim. For this algorithim we are going to use the KNN (K-Nearest Neighbors) module from sklearn. KNN algorithims make predictions by comparing the test data against the training data for each variable. The output is a class membership, which in our case will be either 0=setosa, 1=versicolor, 2=virginica as described above. The knn module from sklearn knows how to carry out the algorithim once we input the data. The following code is used to check the accuracy of the prediction:
+
+```python
+k_range = range(1, 26)
+scores = {}
+scores_list = []
+for k in k_range:
+    knn = KNeighborsClassifier(n_neighbors=k)
+    knn.fit(X_train, y_train)
+    y_pred=knn.predict(X_test)
+    scores[k] = metrics.accuracy_score(y_test, y_pred)
+    scores_list.append(metrics.accuracy_score(y_test, y_pred))
+```
+
+We use a range of 1 to 26 to test k, and using rhe metrics module of sklearn we can numerically represent the accuracy for each k value. Using this code we can plot the relationship for the values of K and the associated accuracy and use this to select the n_neighbors value for K in the final algorithim: 
+
+```python
+plt.plot(k_range, scores_list)
+plt.xlabel('Value of K for KNN')
+plt.ylabel('Testing Accuracy')
+plt.show()
+print(knn.score(X_test, y_test))
+```
+Running the above section of code we get the following plot:
+
+![KNN_Accuracy](KNN_Accuracy.png)
+
+We can see that for a value of K between 3 and 18 we are getting an accuracy of approximately 96.5%. Hence, a value of 5 was used in the algorithim for k_neighbors as this falls within this accuracy.
+
+The k-value can be difficult to interpret, therefore a useful comparison on different k-values and how they affect accuracy is shown below:
+
+![k_accuracyref](k_accuracyref.png)
+![k_accuracyref1](k_accuracyref1.png)
+
+In our case a value of 1 represented an accuracy of less than 93.5% in comparison to the optimal value. Hence it is important to test the k accuracy prior to assigning it to the algorithim.
+
+Finally once the k-value is defined, we can run the algorithim:
+```python
+classes = {0:'setosa', 1:'versicolor', 2:'virginica'}
+sepallength = float(input("Sepal Length(cm).: ")) 
+sepalwidth = float(input("Sepal Width(cm).: ")) 
+petallength = float(input("Petal Length(cm).: ")) 
+petalwidth = float(input("Petal Width(cm).: ")) 
+X_new = np.array([[sepallength, sepalwidth, petallength, petalwidth]])
+y_predict = knn.predict(X_new)
+print(classes[y_predict[0]])
+```
+
+The classes for each species, as described earlier, are defined. It is the intention of this program to use it so that new measurements can be inputted for new research, hence the user is prompted to input the values for each variable which is then included in a numpy array. Using the knn predict function we can then predict the species type. The output is a string printed to screen of the class type. For example the following inputs:
+* 5.0, 4.1, 2.0, 0.5 returns setosa
+* 3.5, 4.0, 4.9, 2.1 returns versicolor
+
+***(Give it a try!)***
+
+# 4. Conclusion
+
+This README has provided a context to the Iris flower data set, carried out high level and detailed analysis of the dataset and also dived into the world of machine learning. A great understanding has been developed of the patterns and characteristics between the variables and species of the iris flower data set which would provide someone insights into the understanding of these particular iris flower species. The README explains all the python code associated with the file so that a programmer could pick understand how to use the code and potentially integrate into their own project. Understanding the potential of python to analyse data was appreciated and its benefits over typcial software such as Microsoft excel. To set up these graphical outputs in traditional software would take far longer and also there may be limitations in there output. Diving into the world of machine learning allowed the learner to understand the power of programming packages such as python and gain an understanding on how large multi national software companies might test their alogorithims. 
 
 # References
 
@@ -327,6 +523,7 @@ Pages 946-954,
 ISSN 1877-0509,
 https://doi.org/10.1016/j.procs.2019.12.072.
 (http://www.sciencedirect.com/science/article/pii/S1877050919320836)
+
 6. https://scikit-learn.org/stable/user_guide.html
 7. http://www.lac.inpe.br/~rafael.santos/Docs/CAP394/WholeStory-Iris.html
 8. https://www.kaggle.com/sanniaf/basic-data-mining-methods-on-iris
@@ -339,3 +536,5 @@ https://doi.org/10.1016/j.procs.2019.12.072.
 15. https://en.wikipedia.org/wiki/NumPy
 16. https://seaborn.pydata.org/
 17. http://www.physics.csbsju.edu/stats/box2.html
+18. https://medium.com/@avulurivenkatasaireddy/k-nearest-neighbors-and-implementation-on-iris-data-set-f5817dd33711
+19. https://towardsdatascience.com/knn-using-scikit-learn-c6bed765be75
