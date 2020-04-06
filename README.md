@@ -510,31 +510,23 @@ This README has provided a context to the Iris flower data set, carried out high
 
 # References
 
-1. https://archive.ics.uci.edu/ml/datasets/Iris
+1. UCI 2020. Iris Flower Dataset. [online] Available at: <https://archive.ics.uci.edu/ml/datasets/Iris> [Accessed 6 April 2020].
 2. Fisher,R.A. "The use of multiple measurements in taxonomic problems" Annual Eugenics, 7, Part II, 179-188 (1936); also in "Contributions to Mathematical Statistics" (John Wiley, NY, 1950).
-3. https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
-4. https://www.techopedia.com/definition/32880/iris-flower-data-set
-5. Yuanyuan Wu, Jing He, Yimu Ji, Guangli Huang, Haichang Yao, Peng Zhang, Wen Xu, Mengjiao Guo, Youtao Li,
-Enhanced Classification Models for Iris Dataset,
-Procedia Computer Science,
-Volume 162,
-2019,
-Pages 946-954,
-ISSN 1877-0509,
-https://doi.org/10.1016/j.procs.2019.12.072.
-(http://www.sciencedirect.com/science/article/pii/S1877050919320836)
-
-6. https://scikit-learn.org/stable/user_guide.html
-7. http://www.lac.inpe.br/~rafael.santos/Docs/CAP394/WholeStory-Iris.html
-8. https://www.kaggle.com/sanniaf/basic-data-mining-methods-on-iris
-9. https://www.ritchieng.com/machine-learning-iris-dataset/
-10. https://www.ibm.com/cloud/blog/predictive-machine-learning-model-build-retrain
-11. https://machinelearningmastery.com/machine-learning-in-python-step-by-step/
-12. https://python-graph-gallery.com/30-basic-boxplot-with-seaborn/
-13. https://seaborn.pydata.org/tutorial/aesthetics.html
-14. https://en.wikipedia.org/wiki/Pandas_(software)
-15. https://en.wikipedia.org/wiki/NumPy
-16. https://seaborn.pydata.org/
-17. http://www.physics.csbsju.edu/stats/box2.html
-18. https://medium.com/@avulurivenkatasaireddy/k-nearest-neighbors-and-implementation-on-iris-data-set-f5817dd33711
-19. https://towardsdatascience.com/knn-using-scikit-learn-c6bed765be75
+3. GitHub. 2020. Adam-P/Markdown-Here. [online] Available at: <https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet> [Accessed 6 April 2020].
+4. Techopedia.com. 2020. What Is The Iris Flower Data Set? - Definition From Techopedia. [online] Available at: <https://www.techopedia.com/definition/32880/iris-flower-data-set> [Accessed 6 April 2020].
+5. Yuanyuan Wu, Jing He, Yimu Ji, Guangli Huang, Haichang Yao, Peng Zhang, Wen Xu, Mengjiao Guo, Youtao Li, Enhanced Classification Models for Iris Dataset,
+Procedia Computer Science, Volume 162, 2019, Pages 946-954, ISSN 1877-0509, (http://www.sciencedirect.com/science/article/pii/S1877050919320836).
+6. Scikit-learn.org. 2020. User Guide: Contents — Scikit-Learn 0.22.2 Documentation. [online] Available at: <https://scikit-learn.org/stable/user_guide.html> [Accessed 6 April 2020].
+7. Lac.inpe.br. 2020. Data Science Example - Iris Dataset. [online] Available at: <http://www.lac.inpe.br/~rafael.santos/Docs/CAP394/WholeStory-Iris.html> [Accessed 6 April 2020].
+8. Kaggle.com. 2020. Basic Data Mining Methods On IRIS. [online] Available at: <https://www.kaggle.com/sanniaf/basic-data-mining-methods-on-iris> [Accessed 6 April 2020].
+9. ritchieng.github.io. 2020. Iris Dataset. [online] Available at: <https://www.ritchieng.com/machine-learning-iris-dataset/> [Accessed 6 April 2020].
+10. Ibm.com. 2020.Us-En_Cloud_Blog_Predictive-Machine-Learning-Model-Build-Retrain. [online] Available at: <https://www.ibm.com/cloud/blog/predictive-machine-learning-model-build-retrain> [Accessed 6 April 2020].
+11. Brownlee, J., 2020. Your First Machine Learning Project In Python Step-By-Step. [online] Machine Learning Mastery. Available at: <https://machinelearningmastery.com/machine-learning-in-python-step-by-step/> [Accessed 6 April 2020].
+12. Holtz, Y., 2020. #30 Basic Boxplot With Seaborn. [online] The Python Graph Gallery. Available at: <https://python-graph-gallery.com/30-basic-boxplot-with-seaborn/> [Accessed 6 April 2020].
+13. Seaborn.pydata.org. 2020. Controlling Figure Aesthetics — Seaborn 0.10.0 Documentation. [online] Available at: <https://seaborn.pydata.org/tutorial/aesthetics.html> [Accessed 6 April 2020].
+14. En.wikipedia.org. 2020. Pandas (Software). [online] Available at: <https://en.wikipedia.org/wiki/Pandas_(software)> [Accessed 6 April 2020].
+15. En.wikipedia.org. 2020. Numpy. [online] Available at: <https://en.wikipedia.org/wiki/NumPy> [Accessed 6 April 2020].
+16. Seaborn.pydata.org. 2020. Seaborn: Statistical Data Visualization — Seaborn 0.10.0 Documentation. [online] Available at: <https://seaborn.pydata.org/> [Accessed 6 April 2020].
+17. Physics.csbsju.edu. 2020. Box Plot: Display Of Distribution. [online] Available at: <http://www.physics.csbsju.edu/stats/box2.html> [Accessed 6 April 2020].
+18. Medium. 2020. K Nearest Neighbors And Implementation On Iris Data Set. [online] Available at: <https://medium.com/@avulurivenkatasaireddy/k-nearest-neighbors-and-implementation-on-iris-data-set-f5817dd33711> [Accessed 6 April 2020].
+19. Medium. 2020. KNN Using Scikit-Learn. [online] Available at: <https://towardsdatascience.com/knn-using-scikit-learn-c6bed765be75> [Accessed 6 April 2020].
