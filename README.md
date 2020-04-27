@@ -60,9 +60,9 @@ from pandas.plotting import parallel_coordinates
 ```
 All of the above libraries were pre-installed by Anaconda while installing Python. The following libaries were used:
 
-* Numpy: Numpy is a library for python that supports arrays and hugh level mathematical functions. It is used in this project for mathematical calculations on the data and arranging the data numerically.
+* Numpy: Numpy is a library for python that supports arrays and high level mathematical functions. It is used in this project for mathematical calculations on the data and arranging the data numerically.
 * Pandas: Pandas is a software library for Python for data manipulation and analysis. It is used in this project for reading files and managing data.
-* Matplotlib.pyloy: Matplotlib is a library for plotting the python language and its extension Numpy. It is used for plotting the data in this project.
+* Matplotlib.pyplot: Matplotlib is a library for plotting the python language and its extension Numpy. It is used for plotting the data in this project.
 * Seaborn: Seaborn is a python data library to create visualisations based on matplotlib. Seaborn was specifically chosen for this project due to the attractive and informative graphical output.
 
 ## 2.2 The Data Set
@@ -192,13 +192,13 @@ Using the seaborn library this graphs are rather simple to form. we define the f
 
 The previous section provided a high level summary of the data, in the following section more detailed analysis is carried out on the data set to examine the relationship between the individual species in more detail, the relationship between different attributes and patterns in the data set. 
 
-One of the most useful plots for looking at the breakdown of the characteritics between each of the species is the boxplot:
+One of the most useful plots for looking at the breakdown of the characteristics between each of the species is the boxplot:
 
 ![2_IrisBoxPlotsA](2_IrisBoxPlotsA.png)
 
 For the above particular boxplot a swarmplot was overlaid showing the distribution of the data (grey dots on the graph). The boxplot can be interpreted as follows:
 
-![boxplotsexplained](boxplotsexplained.png)
+![boxplotsexplained](boxplotsexplained.png) 
 
 Boxplot Interpretation (source:http://www.physics.csbsju.edu/stats/box2.html)
 
@@ -378,7 +378,7 @@ Parrallel coordinates is a module imported from Pandas library. It is straightfo
 
 # 3. Machine Learning
 
- Note that we understand the data in Iris following our detailed analysis, we are going to dive into the world of machine learning by creating an algorithim to predict the species of flower based on an user inputted variable. 
+ Now that we understand the data in Iris following our detailed analysis, we are going to dive into the world of machine learning by creating an algorithim to predict the species of flower based on a user inputted variable. 
 
  ## 3.1 Loading of the Dataset and libraries
 
@@ -433,7 +433,7 @@ The type of iris.data and iris.target are numpy arrays:
 ```
 The above information is important to understand so that the output from the machine learning algorithim can be understood.
 
-Now that we understand the data, we need to create test data and training data. Training and testing on the same data is not ideal or good practice, therefore we split the data into a training set and testing set. The latter is achieved by using the sklearn module "train_test_split. Using a test size as 20% of the data set. We specify a random state number of 4 which tells the module for each run of the data the split will always be the same and to use the same results, changing this value to 0, everytime the program is run it may yield a different result. It is not significant what the a random_state number (4), the important thing is that everytime you use that number (4) you will always get the same output. This is achieved using code below:
+Now that we understand the data, we need to create test data and training data. Training and testing on the same data is not ideal or good practice, therefore we split the data into a training set and testing set. The latter is achieved by using the sklearn module "train_test_split. Using a test size as 20% of the data set. We specify a random state number of 4 which tells the module for each run of the data the split will always be the same and to use the same results, changing this value to 0, everytime the program is run it may yield a different result. It is not significant what the random_state number is (4), the important thing is that everytime you use that number (4) you will always get the same output. This is achieved using code below:
 
 ```python
 X_train, X_test, y_train, y_test = train_test_split(iris['data'], iris['target'], test_size=0.2, random_state=4)
@@ -464,7 +464,7 @@ for k in k_range:
     scores_list.append(metrics.accuracy_score(y_test, y_pred))
 ```
 
-We use a range of 1 to 26 to test k, and using rhe metrics module of sklearn we can numerically represent the accuracy for each k value. Using this code we can plot the relationship for the values of K and the associated accuracy and use this to select the n_neighbors value for K in the final algorithim: 
+We use a range of 1 to 26 to test k, and using the metrics module of sklearn we can numerically represent the accuracy for each k value. Using this code we can plot the relationship for the values of K and the associated accuracy and use this to select the n_neighbors value for K in the final algorithim: 
 
 ```python
 plt.plot(k_range, scores_list)
@@ -483,6 +483,8 @@ The k-value can be difficult to interpret, therefore a useful comparison on diff
 
 ![k_accuracyref](k_accuracyref.png)
 ![k_accuracyref1](k_accuracyref1.png)
+
+(Source: https://medium.com/@avulurivenkatasaireddy/k-nearest-neighbors-and-implementation-on-iris-data-set-f5817dd33711)
 
 In our case a value of 1 represented an accuracy of less than 93.5% in comparison to the optimal value. Hence it is important to test the k accuracy prior to assigning it to the algorithim.
 
@@ -506,7 +508,7 @@ The classes for each species, as described earlier, are defined. It is the inten
 
 # 4. Conclusion
 
-This README has provided a context to the Iris flower data set, carried out high level and detailed analysis of the dataset and also dived into the world of machine learning. A great understanding has been developed of the patterns and characteristics between the variables and species of the iris flower data set which would provide someone insights into the understanding of these particular iris flower species. The README explains all the python code associated with the file so that a programmer could pick understand how to use the code and potentially integrate into their own project. Understanding the potential of python to analyse data was appreciated and its benefits over typcial software such as Microsoft excel. To set up these graphical outputs in traditional software would take far longer and also there may be limitations in there output. Diving into the world of machine learning allowed the learner to understand the power of programming packages such as python and gain an understanding on how large multi national software companies might test their alogorithims. 
+This README has provided a context to the Iris flower data set, carried out high level and detailed analysis of the dataset and also dived into the world of machine learning. A great understanding has been developed of the patterns and characteristics between the variables and species of the iris flower data set which would provide someone detailed insights into the understanding of this particular iris flower species. The README explains all the python code associated with the file so that a programmer could pick up and understand how to use the code and potentially integrate into their own project. Understanding the potential of python to analyse data was appreciated and its benefits over typcial software such as Microsoft excel. To set up these graphical outputs in traditional software would take far longer and also there may be limitations in there output. Diving into the world of machine learning allowed the learner to understand the power of programming packages such as python and gain an understanding on how large multi national software companies might test their alogorithims. 
 
 # References
 
